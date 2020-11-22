@@ -25,75 +25,75 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 // Add your functions below:
 
-function validateCred(array){
-  
-  let helpArray=[];
-  for (let k=0;k<array.length;k++){
-helpArray[k]=array[k];
-  }
-  for(let j=array.length-2 ;j > -1;j-=2){
-if(array[j]*2< 9){
-    helpArray[j]=(array[j]*2);
-}
-else{
-    helpArray[j]=((array[j]*2)-9);
-}
-  }
-  
-const summedNums = helpArray.reduce((accumulator, currentValue) => {
-  
-  return accumulator + currentValue
-});
+function validateCred(array) {
 
-if((summedNums)%10 === 0){
-return true;
-}
-else{
-return false;
-}
+    let helpArray = [];
+    for (let k = 0; k < array.length; k++) {
+        helpArray[k] = array[k];
+    }
+    for (let j = array.length - 2; j > -1; j -= 2) {
+        if (array[j] * 2 < 9) {
+            helpArray[j] = (array[j] * 2);
+        }
+        else {
+            helpArray[j] = ((array[j] * 2) - 9);
+        }
+    }
+
+    const summedNums = helpArray.reduce((accumulator, currentValue) => {
+
+        return accumulator + currentValue
+    });
+
+    if ((summedNums) % 10 === 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }//here is the end of the ValidateCred function
 
-function findInvalidCards(batch){
-  const har=batch;
-const invalidCardsArray=har.filter(function (element){
-  if(!validateCred(element))
-  return element;
-});
-return invalidCardsArray;
+function findInvalidCards(batch) {
+    const har = batch;
+    const invalidCardsArray = har.filter(function (element) {
+        if (!validateCred(element))
+            return element;
+    });
+    return invalidCardsArray;
 }//here is the end of the findInvalidCards function
 
-function idInvalidCardCompanies(array){
-  let companiesArray=[];
-if(array.some(function (element){
-return element[0]===3;
-})){
-  companiesArray.push('Amex');
-}
- if(array.some(function (element){
-return element[0]===4;
-})){
-  companiesArray.push('Visa');
-}
-if(array.some(function (element){
-return element[0]===5;
-})){
-  companiesArray.push('Mastercard');
-}
-if(array.some(function (element){
-return element[0]===6;
-})){
-  companiesArray.push('Discover');
-}
-if(companiesArray.length>0){
-console.log(companiesArray);
-return companiesArray;
-}
-else{
-  return 'Company not found';
-}
+function idInvalidCardCompanies(array) {
+    let companiesArray = [];
+    if (array.some(function (element) {
+        return element[0] === 3;
+    })) {
+        companiesArray.push('Amex');
+    }
+    if (array.some(function (element) {
+        return element[0] === 4;
+    })) {
+        companiesArray.push('Visa');
+    }
+    if (array.some(function (element) {
+        return element[0] === 5;
+    })) {
+        companiesArray.push('Mastercard');
+    }
+    if (array.some(function (element) {
+        return element[0] === 6;
+    })) {
+        companiesArray.push('Discover');
+    }
+    if (companiesArray.length > 0) {
+        console.log(companiesArray);
+        return companiesArray;
+    }
+    else {
+        return 'Company not found';
+    }
 }// here is the end of the idInvalidCardCompanies
 
 
-const invalidCardsArray=findInvalidCards(batch);
+const invalidCardsArray = findInvalidCards(batch);
 console.log(invalidCardsArray);
 idInvalidCardCompanies(invalidCardsArray);
